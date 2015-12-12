@@ -1,0 +1,22 @@
+#! /bin/bash
+
+
+tablesize=1000000
+
+mysql -f -e "drop database sysbench"
+mysql -e "create database sysbench"
+
+time sysbench --test=oltp --oltp-table-size=$tablesize \
+    --mysql-db=sysbench --mysql-user=root \
+    --mysql-password= prepare
+
+for threads in 1 2 4 8 16 32 64 128; do
+    for ((iter=1; iter < 4; iter++)); do
+        echo "running test with $threads threads, try $iter"
+        sysbench --test=oltp --oltp-table-size=$tablesize \
+            --mysql-db=sysbench --mysql-user=root \
+            --mysql-password= --max-time=60 \
+            --oltp-read-only=off --max-requests=0 \
+            --num-threads=$threads run 2>&1 > sysbench.$threads.$iter.out
+    done
+done
