@@ -22,3 +22,6 @@ for threads in 1 2 4 8 16 32 64 128; do
             --num-threads=$threads run 2>&1 > sysbench.$threads.$iter.out
     done
 done
+
+grep transactions: *.out > sysbench-results.txt
+cat sysbench-results.txt
