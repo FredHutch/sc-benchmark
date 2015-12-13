@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt-get install -y pciutils
+
 host="$(hostname)"
 timeslot=`date +%Y%m%d_%H-%M`
 logfile="/tmp/$host-$timeslot-pgbench.log"
@@ -15,7 +17,7 @@ cores="$(nproc)"
 cpudata="$(lscpu)"
 disk_controllers="$(lspci | grep -E 'RAID|SCSI|IDE|SATA')"
 mounts="$(cat /etc/mtab)"
-pguser="pgcontrol"
+pguser="postgres"
 scale=500
 runs=2000
 max_clients=256
