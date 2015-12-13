@@ -3,8 +3,7 @@
 tablesize=10000000
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get -q -y install mysql-server
-
+apt-get -q -y --force-yes install mysql-server sysbench
 
 mysql -f -e "drop database sysbench"
 mysql -e "create database sysbench"
