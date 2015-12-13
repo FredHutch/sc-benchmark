@@ -1,7 +1,10 @@
 #! /bin/bash
 
+tablesize=10000000
 
-tablesize=1000000
+export DEBIAN_FRONTEND=noninteractive
+apt-get -q -y install mysql-server
+
 
 mysql -f -e "drop database sysbench"
 mysql -e "create database sysbench"
