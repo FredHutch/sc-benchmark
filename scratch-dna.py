@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import sys, os, time, random, socket
 
@@ -22,10 +22,10 @@ bytesize=int(sys.argv[2])
 maxmult=int(sys.argv[3])
 mydir=sys.argv[4]
 
-kbytesize=float(bytesize)/1024
+mbytesize=float(bytesize)/1048576
 hostname=socket.gethostname()
 
-print('%s: ... building random DNA sequence of %s KB...' % (hostname,"{0:.3f}".format(kbytesize)))
+print('%s: ... building random DNA sequence of %s MB...' % (hostname,"{0:.3f}".format(mbytesize)))
 dnastr = ''
 for i in range(bytesize):
     dnastr += random.choice(dnalist)
@@ -34,7 +34,7 @@ start = time.time()
 wbytes = 0.0
 nfiles = 0
 
-print('%s: ... writing %s files with filesizes between %s KB and %s KB ...' % (hostname,numfiles,"{0:.3f}".format(kbytesize),"{0:.3f}".format(kbytesize*maxmult)))
+print('%s: ... writing %s files with filesizes between %s MB and %s MB ...' % (hostname,numfiles,"{0:.3f}".format(mbytesize),"{0:.3f}".format(mbytesize*maxmult)))
 
 for i in range(numfiles):
     n = random.randint(1,maxmult)
