@@ -2,8 +2,6 @@
 
 import sys, os, time, random, socket
 
-#print 'Argument List:', str(sys.argv)
-
 def usage():
     print("Error! 4 arguments required. Execute %s [number-of-files] [file-size-bytes] [random-file-size-multiplier] [writable-directory]" % sys.argv[0])    
 
@@ -48,13 +46,13 @@ for i in range(numfiles):
             os.mkdir(os.path.join(mydir,hostname))
         except:
             pass
-    #print("open %s ..." % filename)
-    fullstr = (str(i)+dnastr+hostname) * n
-    fh = open(os.path.join(mydir,hostname,filename), "w")    
-    fh.write(fullstr)
-    fh.close()
-    #print("closed %s ..." % filename)
-    wbytes += len(fullstr)
+
+    with open(os.path.join(mydir,hostname,filename), "w") as fh:
+       for part in range(n):
+           wbytes+=fh.write(str(i))
+           wbytes+=fh.write(dnastr)
+           wbytes+=fh.write(hostname)
+
     nfiles += 1
 
 elapsed = time.time() - start
