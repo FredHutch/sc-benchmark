@@ -7,7 +7,12 @@ import sys, os, time, random, socket
 def usage():
     print("Error! 4 arguments required. Execute %s [number-of-files] [file-size-bytes] [random-file-size-multiplier] [writable-directory]" % sys.argv[0])    
 
-dnalist= list('ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT')
+def generate_random_dna(len):
+    bases=list('AGTC')
+    dnastr=''
+    for i in range(bytesize):
+        dnastr+=bases[int(random.random()*4)]
+    return dnastr
 
 if len(sys.argv) == 5:
     if not os.path.isdir(sys.argv[4]):
@@ -26,9 +31,8 @@ mbytesize=float(bytesize)/1048576
 hostname=socket.gethostname()
 
 print('%s: ... building random DNA sequence of %s MB...' % (hostname,"{0:.3f}".format(mbytesize)))
-dnastr = ''
-for i in range(bytesize):
-    dnastr += random.choice(dnalist)
+
+dnastr=generate_random_dna(bytesize)
 
 start = time.time()
 wbytes = 0.0
@@ -56,4 +60,3 @@ for i in range(numfiles):
 elapsed = time.time() - start
 
 print('%s: %s MB written in %s seconds (%s MB/s, %s files/s)' % (hostname,"{0:.6f}".format(wbytes/1048576),"{0:.3f}".format(elapsed),"{0:.3f}".format(wbytes/1048576/elapsed),int(nfiles/elapsed)))
-    
