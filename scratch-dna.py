@@ -9,7 +9,7 @@ def generate_random_dna(len):
     bases=list('AGTC')
     dnastr=''
     for i in range(bytesize):
-        dnastr+=bases[int(random.random()*4)]
+        dnastr+=bases[random.getrandbits(2)]
     return dnastr
 
 if len(sys.argv) == 5:
@@ -49,8 +49,8 @@ for i in range(numfiles):
 
     with open(os.path.join(mydir,hostname,filename), "w") as fh:
        for part in range(n):
-           wbytes+=fh.write(str(i))
            wbytes+=fh.write(dnastr)
+           wbytes+=fh.write(str(i))
            wbytes+=fh.write(hostname)
 
     nfiles += 1
