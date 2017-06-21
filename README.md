@@ -55,7 +55,7 @@ Number of Files Written: 1000, Total Size: 5.4GiB, Avg FPS: 34, Avg Throughput: 
 ### Example 2 - 8 threads with verbose output:
 
 ```
-[rmcdermo@rhino1 godna]$ ./scratch-dna-go -v -p 8 1000 1048576 10 ~/dna
+./scratch-dna-go -v -p 8 1000 1048576 10 ~/dna
 Building random DNA sequence of 1.0 MB...
 
 Writing 1000 files with filesizes between 1.0 MB and 10.0 MB...
