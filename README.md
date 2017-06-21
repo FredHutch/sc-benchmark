@@ -37,7 +37,7 @@ In general dna snippet would be much more random if it could be regenerated for 
 scatch-dna-go
 -------------
 
-A drop in replacement for scratch-dna.py written in Go that adds the ability to specify who man files to write in parallel (-p num). Also adds verbose output (-v) that shows progress as files are being written.
+A drop in replacement for scratch-dna.py written in Go that adds the ability to specify how many files to write in parallel (-p num). Also adds verbose output (-v) that shows progress as files are being written.
 
 ### Example 1 - single threaded:
 
