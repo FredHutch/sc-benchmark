@@ -24,7 +24,7 @@ func main() {
         if len(args) != 4 {
 		fmt.Fprintf(os.Stderr, "Error! 4 positional arguments required.\n")
                 fmt.Fprintf(os.Stderr, "\nUsage: %s [-p <parallel threads> -v (verbose)] <number-of-files> <file-size-bytes> <random-file-size-multiplier> <writable-directory>\n", os.Args[0])
-                fmt.Fprintf(os.Stderr, "\nExample: %s -v -p 8 1024 10485760 1 -d /tmp\n\n", os.Args[0])
+                fmt.Fprintf(os.Stderr, "\nExample: %s -v -p 8 1024 10485760 1 /tmp\n\n", os.Args[0])
 		os.Exit(1)
 	}
 
