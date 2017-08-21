@@ -18,13 +18,13 @@ void print_usage(char *cmd)
       cmd);
 }
 
-uint32_t randomish() 
+unsigned int randomish() 
 {
-   static uint32_t x = 123456789;
-   static uint32_t y = 362436069;
-   static uint32_t z = 521288629;
-   static uint32_t w = 88675123;
-   uint32_t t;
+   static unsigned int x = 123456789;
+   static unsigned int y = 362436069;
+   static unsigned int z = 521288629;
+   static unsigned int w = 88675123;
+   unsigned int t;
 
    t = x ^ (x << 11);
    x = y; y = z; z = w;
@@ -84,10 +84,9 @@ void generate_dna(char *filename,char *dna,int files,int bytes,int mult)
          }
       }
 
-   time(&elapsed);
+   elapsed=time(NULL)-start;
    printf("%.2f MB written in %ld seconds (%.2f MB/s, %.2f files/s)\n",
-      wbytes/MB,elapsed-start,wbytes/MB/(elapsed-start),
-      (float)nfiles/(elapsed-start));
+      wbytes/MB,elapsed,wbytes/MB/elapsed,(float)nfiles/elapsed);
 }
 
 void do_work(int workers,int files,int bytes,int mult)
