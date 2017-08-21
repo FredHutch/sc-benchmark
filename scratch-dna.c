@@ -50,7 +50,7 @@ char *generate_random_dna(int len)
 void generate_dna(char *filename,char *dna,int files,int bytes,int mult)
 {
    int end=strlen(filename); /* save length of base filename */
-   int wbytes=0;
+   unsigned long wbytes=0;
    int nfiles=0;
 
    time_t start,elapsed;
@@ -74,9 +74,10 @@ void generate_dna(char *filename,char *dna,int files,int bytes,int mult)
          {
          while (n--)
             {
-            wbytes+=fwrite(dna,bytes,1,fp);
-            wbytes+=fwrite(istr,il,1,fp);
-            wbytes+=fwrite(filename,end,1,fp);
+            fwrite(dna,bytes,1,fp);
+            fwrite(istr,il,1,fp);
+            fwrite(filename,end,1,fp);
+            wbytes+=(bytes+il+end);
             }
 
          fclose(fp);
