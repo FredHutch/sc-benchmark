@@ -14,10 +14,11 @@ https://www.rdocumentation.org/packages/rbenchmark/versions/1.0.0/topics/benchma
 We ran tests using R 3.3.2 on Ubuntu 14.04 after AWS had patched for the
 meltdown vulnerability. 22 sec local vs 25 sec on AWS suggests the impact of the
 meltdown patches on CPU intensive workflows such as statistical simulations is relatively small.
-The AWS instance has ca 7% better Passmark benchmarks despite clocking a bit lower
-according to https://www.cpubenchmark.net/. This suggests that AWS is overclocking their CPUs.
+The AWS instance has ca 7% better Passmark benchmarks (measured before the
+patching) despite clocking a bit lower according to https://www.cpubenchmark.net/.
+This suggests that AWS is overclocking their CPUs.
 
-25 sec on a AWS C4 instance (E5-2666 v3 @ 2.90GHz - CPU Mark 24877):
+#### 25 sec on a AWS C4 instance (E5-2666 v3 @ 2.90GHz - CPU Mark 24877):
 
     test replications elapsed relative user.self sys.self user.child sys.child
     1 1:10^6          100   0.106        1     0.074    0.032          0         0
@@ -43,7 +44,7 @@ according to https://www.cpubenchmark.net/. This suggests that AWS is overclocki
     user	0m0.78s
     sys	  0m0.32s
 
-22 sec on local hardware (E5-2667 v3 @ 3.20GHz - CPU Mark 23207)
+#### 22 sec on local hardware (E5-2667 v3 @ 3.20GHz - CPU Mark 23207)
 
     $ time ./rbenchmark.R
         test replications elapsed relative user.self sys.self user.child sys.child
