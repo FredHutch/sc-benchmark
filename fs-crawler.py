@@ -5,7 +5,7 @@
 # fs-crawler dirkpetersen / Oct 2019 
 #
 
-import sys, os, pwd, argparse, subprocess, re, time, datetime, tempfile, random, threading
+import sys, os, pwd, argparse, subprocess, re, time, datetime, tempfile, random, threading, filecmp
 
 class KeyboardInterruptError(Exception): pass
 
@@ -54,6 +54,16 @@ def main():
             interval+=1
             if maxinterval<=interval:
                 interval=maxinterval
+
+        if args.target:
+            troot = root.replace(args.folder,args.target)
+            if os.path.exists(troot):
+                dc = filecmp.dircmp(root, root.replace(args.folder,args.target), ignore=['.snapshot'])
+                if dc.left_list:
+                    print ('*** Copy -> :', dc.left_list)
+                elif dc.right_list:
+                    print ('*** Delete -> :', dc.right_list)
+            continue
 
         for f in files:
             p=os.path.join(root,f)
@@ -425,6 +435,9 @@ def parse_arguments():
     parser.add_argument( '--folder', '-f', dest='folder',
         action='store', 
         help='search this folder and below for files to remove')
+    parser.add_argument( '--target', '-t', dest='target',
+        action='store',
+        help='targeet directory tree to sync to')
     args = parser.parse_args()
     if not args.folder:
         parser.error('required option --folder not given !')
