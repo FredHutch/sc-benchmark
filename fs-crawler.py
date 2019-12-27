@@ -145,8 +145,8 @@ def setfiletime(path,attr="atime"):
 
 def uid2user(uidNumber):
     """ attempts to convert uidNumber to username """
-    import pwd
     try:
+        import pwd
         return pwd.getpwuid(int(uidNumber)).pw_name
     except Exception as err:
         sys.stderr.write(str(err))
