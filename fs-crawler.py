@@ -11,9 +11,9 @@ class KeyboardInterruptError(Exception): pass
 
 def main():
 
-    log = logger('fs-crawler', args.debug)
-    log.info('starting to check folder %s for files older than %s days...' % (args.folder, args.days))
-    log.debug('Parsed arguments: %s' % args)
+    #log = logger('fs-crawler', args.debug)
+    #log.info('starting to check folder %s for files older than %s days...' % (args.folder, args.days))
+    #log.debug('Parsed arguments: %s' % args)
 
     start = time.time()
     interval = 1
