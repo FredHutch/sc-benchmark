@@ -5,7 +5,7 @@
 # fs-crawler dirkpetersen / Oct 2019 
 #
 
-import sys, os, pwd, argparse, subprocess, re, time, datetime, tempfile, random, threading, filecmp
+import sys, os, argparse, subprocess, re, time, datetime, tempfile, random, threading, filecmp
 
 class KeyboardInterruptError(Exception): pass
 
@@ -23,7 +23,7 @@ def main():
     lastt = 0
     
     currdir = os.getcwd()
-    curruser = pwd.getpwuid(os.getuid()).pw_name
+    curruser = os.getlogin()  #pwd.getpwuid(os.getuid()).pw_name
     tmpdir = tempfile.gettempdir()
     days_back_as_secs = time.time() - (args.days * 24 * 3600)
     days_back_datestr = str(datetime.date.today() + datetime.timedelta(args.days * -1)) # e.g. '2014-07-01'
