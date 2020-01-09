@@ -40,11 +40,13 @@ func main() {
 	out := genstring(size)
 	progress := make(chan int64, 256)
 	start := time.Now().Unix()
-	
+
         hostname, err := os.Hostname()
         if err != nil {
-                hostname = "dna" 
+                hostname = "dna"
         }
+	rand.Seed(time.Now().UnixNano())
+	hostname += fmt.Sprintf("_%08d",rand.Intn(100000000))
 
 
         go func() {
@@ -68,13 +70,13 @@ func main() {
         }
 
         var nfiles, nbytes int64
-	
+
 loop:
         for {
                 select {
                 case size, ok := <-progress:
                         if !ok {
-                        	break loop // progress was closed
+				break loop // progress was closed
                         }
                         nfiles++
                         nbytes += size
@@ -114,7 +116,7 @@ func spraydna(count int, wg *sync.WaitGroup, sema chan struct{}, out *[]byte, di
 	path := fmt.Sprintf("%s/%s", dir, hostname)
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {
-    		os.Mkdir(path, 0755)
+		os.Mkdir(path, 0755)
 	}
 
 	multiple := rand.Intn(mFlag) + 1
