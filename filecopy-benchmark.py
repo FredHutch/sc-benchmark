@@ -10,7 +10,7 @@
 # > python filecopy-benchmark.py -p "C:\metrics" -d "Y:\scratch\folder"
 # go to http://localhost:9182/metrics
 
-import requests, json, sys, os, subprocess, argparse, glob, re, tempfile, shutil, time, socket, random
+import json, sys, os, subprocess, argparse, glob, re, tempfile, shutil, time, socket, random
 
 tests=[[50000,250], [300000,100], [3000000,25], [300000000,3]] # 4 tests with different file sizes 
 prom_label = "smb_performance_file_fhcrc_org"
