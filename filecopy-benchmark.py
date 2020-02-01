@@ -12,7 +12,7 @@
 
 import json, sys, os, subprocess, argparse, glob, re, tempfile, shutil, time, socket, random
 
-tests=[[50000,250], [300000,100], [3000000,25], [300000000,3]] # 4 tests with different file sizes 
+tests=[[50000,250], [300000,100], [10000000,25], [300000000,3]] # 4 tests with different file sizes 
 prom_label = "smb_performance_file_fhcrc_org"
 
 def main():
